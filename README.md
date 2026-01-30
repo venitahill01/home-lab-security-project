@@ -76,8 +76,6 @@ ________________________________________
 
 
 ________________________________________
-## Home Lab Security Project: Exposed Service Analysis and Hardening
-
 ## For Powershell and Nmap commands - see below
 
 ## Overview
