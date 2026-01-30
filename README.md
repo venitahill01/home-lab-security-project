@@ -173,3 +173,7 @@ ________________________________________
 ## Conclusion
 This project demonstrates a practical, real-world approach to identifying and reducing attack surface on a public Linux system. By combining external scanning with internal validation and layered defenses, the system was confirmed to follow secure-by-default principles expected in professional cybersecurity environments.
 This lab reflects the same analysis and remediation workflow used by SOC analysts and cloud security engineers.
+
+________________________________________
+## Skills
+Linux, Nmap, Cybersecurity, SMB, Firewall, Hardening
