@@ -1,11 +1,11 @@
-Home Lab Security Project: Exposed Service Analysis and Hardening
+## Home Lab Security Project: Exposed Service Analysis and Hardening
 
 
-Overview
+## Overview
 This home lab project demonstrates how to identify, analyze, and remediate exposed network services on a cloud-hosted Linux virtual machine. The focus is on understanding attack surface, interpreting port scan results, and applying defensive hardening practices aligned with real-world cybersecurity operations.
 The lab uses a public-facing Ubuntu server to observe how services appear to external scanners and how firewalling and service configuration affect exposure.
 ________________________________________
-Objectives
+## Objectives
 •	Enumerate open and filtered ports on a public Linux VM
 •	Understand the difference between open, closed, and filtered ports
 •	Analyze a high-risk service (SMB / Samba)
@@ -13,7 +13,7 @@ Objectives
 •	Apply secure hardening practices
 •	Validate remediation through rescanning
 ________________________________________
-Environment
+## Environment
 •	Operating System: Ubuntu Server (cloud-hosted VM)
 •	Access: SSH (port 22)
 •	Tools Used:
@@ -23,7 +23,7 @@ o	systemctl (service management)
 o	UFW (host-based firewall)
 o	Cloud provider firewall (network perimeter)
 ________________________________________
-Initial Reconnaissance
+## Initial Reconnaissance
 An external Nmap scan was performed against the VM’s public IP address:
 •	Result: Only port 22/tcp (SSH) appeared open
 •	Port 445/tcp appeared as filtered with service identified as Microsoft-DS
@@ -40,11 +40,11 @@ Multiple layers of filtering were identified:
 3.	Cloud firewall: No inbound rule allowing TCP 445
 Because packets were silently dropped, Nmap correctly reported the port state as filtered.
 ________________________________________
-Risk Assessment
+## Risk Assessment
 SMB (port 445) is considered a high-risk service when exposed publicly due to: - Extensive history of critical vulnerabilities - Frequent scanning by attackers - Use in lateral movement and ransomware campaigns
 Best practice dictates that SMB should never be exposed directly to the internet.
 ________________________________________
-Remediation Steps
+## Remediation Steps
 To fully harden the system, the following actions were taken:
 •	Stopped and disabled Samba services:
 o	smbd
@@ -53,27 +53,26 @@ o	nmbd
 •	Confirmed no listening services on port 445 using ss
 •	Ensured cloud firewall rules did not allow SMB traffic
 ________________________________________
-Validation
+## Validation
 A follow-up external Nmap scan confirmed:
 •	Port 22/tcp remained open for SSH
 •	Port 445/tcp remained filtered, indicating no exposure
 The filtered state was intentionally retained, as it provides less information to potential attackers than a closed state.
 ________________________________________
-Key Takeaways
+## Key Takeaways
 •	Exposed services, not installed services, define attack surface
 •	Nmap service labels are protocol-based, not OS-specific
 •	Firewalls, service bindings, and cloud controls all affect exposure
 •	A filtered port state is often preferable from a defensive standpoint
 •	Default-secure configurations should be preserved unless a business need exists
 ________________________________________
-Skills Demonstrated
+## Skills Demonstrated
 •	Network reconnaissance and interpretation
 •	Linux service management
 •	Firewall configuration and validation
 •	Secure system hardening
 •	Defensive security mindset
 •	Clear documentation of security findings
-
 
 
 ________________________________________
